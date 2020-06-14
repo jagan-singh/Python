@@ -35,11 +35,19 @@ class Employee:
             return False
         return True
 
+    def __repr__(self):
+        return "Employee('{}','{}',{})".format(self.first, self.last, self.pay)
+
+    def __str__(self):
+        return '{} - {}'.format(self.fullName(), self.email)
+
+
+
 # print(Employee.num_of_emps)
 
 # Employee.set_raise_amt(1.05)
 
-# emp1 = Employee('John', 'Doe', 50000 )
+emp1 = Employee('John', 'Doe', 50000 )
 # emp2 = Employee('j','d',9000)
 # emp3 = Employee('Test','T',8000)
 
@@ -48,7 +56,8 @@ class Employee:
 
 # emp4 = Employee.from_string(emp_str1)
 
-
+print(emp1.__repr__())
+print(emp1)
 
 # print(emp1.pay)
 # emp1.apply_raise()
@@ -103,5 +112,7 @@ dev2 = Developer("Ja", "Jsid", 120000, 'Java')
 
 mgr1  = Manager('Sue', 'Smith', 90000, [dev])
 
-print(isinstance(mgr1, Employee))
-print(issubclass(Manager, Employee))
+# print(isinstance(mgr1, Employee))
+# print(issubclass(Manager, Employee))
+#
+# print(dev.email)
