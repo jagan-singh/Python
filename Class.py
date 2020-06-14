@@ -1,4 +1,4 @@
-#Object Oriented Programming
+# Object Oriented Programming
 class Employee:
 
     raise_amount = 1.04
@@ -35,43 +35,73 @@ class Employee:
             return False
         return True
 
+# print(Employee.num_of_emps)
+
+# Employee.set_raise_amt(1.05)
+
+# emp1 = Employee('John', 'Doe', 50000 )
+# emp2 = Employee('j','d',9000)
+# emp3 = Employee('Test','T',8000)
+
+# emp_str1 = 'Steven-Smith-80000'
+# emp_str2 = 'Jane-Doe-90000'
+
+# emp4 = Employee.from_string(emp_str1)
 
 
 
+# print(emp1.pay)
+# emp1.apply_raise()
+# print(emp1.pay)
+# print(Employee.num_of_emps)
 
-print(Employee.num_of_emps)
+# print(emp1.raise_amount)
+# print(emp2.raise_amount)
+# print(emp3.raise_amount)
+# print(emp4.email)
 
-Employee.set_raise_amt(1.05)
+# import datetime
+# my_date = datetime.date(2020,06,15)
 
-emp1 = Employee('John', 'Doe', 50000 )
-emp2 = Employee('j','d',9000)
-emp3 = Employee('Test','T',8000)
+# print(Employee.is_workday(my_date))
 
-emp_str1 = 'Steven-Smith-80000'
-emp_str2 = 'Jane-Doe-90000'
+#Inheritance
+class Developer(Employee):
+    raise_amount = 1.10
 
-emp4 = Employee.from_string(emp_str1)
-
-
-
-print(emp1.pay)
-emp1.apply_raise()
-print(emp1.pay)
-print(Employee.num_of_emps)
-
-print(emp1.raise_amount)
-print(emp2.raise_amount)
-print(emp3.raise_amount)
-print(emp4.email)
-
-import datetime
-my_date = datetime.date(2020,06,15)
-
-print(Employee.is_workday(my_date))
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
+        #Employee.__init__(self, first, last , pay) works just as the one above
 
 
 
+class Manager(Employee):
+
+    def __init__(self, first, last, pay, employees=None):
+        super().__init__(first, last, pay)
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_emp(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+    def remove_emp(self, emp):
+        if emp in self.employees:
+            self.employees.remove(emp)
+
+    def print_emps(self):
+        for emp in self.employees:
+            print('-->',emp.fullName())
 
 
+dev  = Developer('H', 'j',10000, 'Python')
+dev2 = Developer("Ja", "Jsid", 120000, 'Java')
 
+mgr1  = Manager('Sue', 'Smith', 90000, [dev])
 
+print(isinstance(mgr1, Employee))
+print(issubclass(Manager, Employee))
