@@ -8,12 +8,27 @@ class Employee:
         self.first = first
         self.last = last
         self.pay = pay
-        self.email = first + '.'+ last + '@company.com'
         Employee.num_of_emps +=1
 
+    @property
     def fullName(self):
         return '{} {}'.format(self.first, self.last)
 
+    @property
+    def email(self):
+        return '{}.{}@email.com'.format(self.first, self.last)
+
+    @fullName.setter
+    def fullName(self, name):
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
+
+    @fullName.deleter
+    def fullName(self):
+        print('Delete name')
+        self.first = None
+        self.last = None
 
     #instance method
     def apply_raise(self):
@@ -43,6 +58,8 @@ class Employee:
 
 
 
+
+
 # print(Employee.num_of_emps)
 
 # Employee.set_raise_amt(1.05)
@@ -56,9 +73,14 @@ emp1 = Employee('John', 'Doe', 50000 )
 
 # emp4 = Employee.from_string(emp_str1)
 
-print(emp1.__repr__())
-print(emp1)
+print(emp1.email)
 
+
+emp1.fullName = 'Jagan Jatt'
+print(emp1.email)
+
+del emp1.fullName
+print(emp1.email)
 # print(emp1.pay)
 # emp1.apply_raise()
 # print(emp1.pay)
@@ -105,14 +127,3 @@ class Manager(Employee):
     def print_emps(self):
         for emp in self.employees:
             print('-->',emp.fullName())
-
-
-dev  = Developer('H', 'j',10000, 'Python')
-dev2 = Developer("Ja", "Jsid", 120000, 'Java')
-
-mgr1  = Manager('Sue', 'Smith', 90000, [dev])
-
-# print(isinstance(mgr1, Employee))
-# print(issubclass(Manager, Employee))
-#
-# print(dev.email)
